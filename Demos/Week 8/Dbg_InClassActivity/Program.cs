@@ -26,13 +26,17 @@ namespace Dbg_InClassActivity
 {
     class Program
     {
+        /// <summary>
+        /// This is a description of Main
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             // TODO: Uncomment the method calls one at a time and debug them
             //FractionToDecimal();
             //Quadratic();
             //CipherText(); 
-            //Console.WriteLine(Fibonaci(10)); // The result should be 55 (0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55)
+            Console.WriteLine(Fibonaci(5)); // The result should be 55 (0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55)
         }
 
         /// <summary>
@@ -65,11 +69,11 @@ namespace Dbg_InClassActivity
         /// TODO: BUG - The result is always a whole number no matter what values are given.
         /// </summary>
         private static void FractionToDecimal()
-        {
+         {
             Console.WriteLine("Enter a fraction...");
             Console.WriteLine("\n ---> " + 
-                    ( int.Parse(PromptForInput("\tNumerator\t:")) 
-                      / int.Parse(PromptForInput("\tDenominator\t:")) 
+                    ( double.Parse(PromptForInput("\tNumerator\t:")) 
+                      / double.Parse(PromptForInput("\tDenominator\t:")) 
                     )
                 );
         }
@@ -112,7 +116,28 @@ namespace Dbg_InClassActivity
         /// </summary>
         private static int Fibonaci(int n)
         {
-            return Fibonaci(n - 1) + Fibonaci(n - 2);
+            /*
+             * F0 - 0 // base case
+             * F1 - 1 // base case
+             * Fn - F(n-1) + F(n-2) // recursive case n > 1
+             */
+            // base caseS
+            if (n == 0 || n == 1)
+            {
+                Console.Write(".");
+                return n;
+            }
+            else if (n > 1)
+            {
+                // recursive case
+                // state change
+                return Fibonaci(n - 1) + Fibonaci(n - 2);
+            }
+            else //  n < 0
+            {
+                // invalid
+                return -1;
+            }
         }
 
         /// <summary>
@@ -134,7 +159,7 @@ namespace Dbg_InClassActivity
         private static void CipherText()
         {
             // Setup
-            const char MinSourceLetter = 'A';
+            const char MinSourceLetter = 'a';
             const char MinCipherLetter = 'A';
             const int NumLetters = 26;
 
@@ -147,13 +172,20 @@ namespace Dbg_InClassActivity
             shiftKey = int.Parse(PromptForInput("Enter the shift key [0, 26]:"));
 
             // Get the word to encrypt
-            text = PromptForInput("Enter the word to encrypt:").ToUpper();
+            text = PromptForInput("Enter the word to encrypt:").ToLower();
 
             // Encrypt & print
             ciphertext = text;
-            ciphertext = ciphertext.Replace((char)(MinSourceLetter + 0), (char)((0 + shiftKey) % NumLetters + MinCipherLetter));
-            ciphertext = ciphertext.Replace((char)(MinSourceLetter + 1), (char)((1 + shiftKey) % NumLetters + MinCipherLetter));
-            ciphertext = ciphertext.Replace((char)(MinSourceLetter + 2), (char)((2 + shiftKey) % NumLetters + MinCipherLetter));
+
+
+            //               ABC
+            // for each char, encrypt all instances of it
+            ciphertext = ciphertext.Replace(
+                (char)(MinSourceLetter + 0), // char to look for --- A + 0 -> A
+                (char)((0 + shiftKey) % NumLetters + MinCipherLetter) // char to replace it with -- (A + shift)==offset (% to keep within 0,25) + A
+                );
+            ciphertext = ciphertext.Replace((char)(MinSourceLetter + 1), (char)((1 + shiftKey) % NumLetters + MinCipherLetter)); // B, shift + B
+            ciphertext = ciphertext.Replace((char)(MinSourceLetter + 2), (char)((2 + shiftKey) % NumLetters + MinCipherLetter)); // C, shift + C
             ciphertext = ciphertext.Replace((char)(MinSourceLetter + 3), (char)((3 + shiftKey) % NumLetters + MinCipherLetter));
             ciphertext = ciphertext.Replace((char)(MinSourceLetter + 4), (char)((4 + shiftKey) % NumLetters + MinCipherLetter));
             ciphertext = ciphertext.Replace((char)(MinSourceLetter + 5), (char)((5 + shiftKey) % NumLetters + MinCipherLetter));
