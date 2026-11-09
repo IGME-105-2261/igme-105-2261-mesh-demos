@@ -1,6 +1,4 @@
-﻿using _2D_Arrays;
-
-namespace ConstChaining_Overloading
+﻿namespace Properties
 {
     internal class Program
     {
@@ -13,6 +11,12 @@ namespace ConstChaining_Overloading
             carrot.StealBananas(2);
             carrot.StealBananas("42");
             carrot.Print();
+
+            red.Weight = 10;
+            Console.WriteLine(red.Weight);
+
+            red.Weight = -5;
+            Console.WriteLine(red.Weight);
         }
     }
 }

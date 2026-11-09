@@ -2,11 +2,36 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConstChaining_Overloading
+namespace Properties
 {
     internal class Carrot
     {
+        // fields
         private double weight;
+
+        // properties
+        public double Weight
+        {
+            get { return weight; }
+
+            set
+            {
+                if (value >= 0)
+                {
+                    weight = value;
+                }
+            }
+        }
+
+        public bool IsGone
+        {
+            get
+            {
+                return weight == 0;
+            }
+        }
+
+        // constructors
 
         public Carrot()
            : this(0)
@@ -20,5 +45,7 @@ namespace ConstChaining_Overloading
             this.weight = weight;
             Console.WriteLine("Parameterized carrot");
         }
+
+        // methods
     }
 }

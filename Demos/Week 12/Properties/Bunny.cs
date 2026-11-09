@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace _2D_Arrays
+namespace Properties
 {
     internal class Bunny
     {
