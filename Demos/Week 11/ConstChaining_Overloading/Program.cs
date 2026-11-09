@@ -1,6 +1,4 @@
-﻿using _2D_Arrays;
-
-namespace ConstChaining_Overloading
+﻿namespace ConstChaining_Overloading
 {
     internal class Program
     {
