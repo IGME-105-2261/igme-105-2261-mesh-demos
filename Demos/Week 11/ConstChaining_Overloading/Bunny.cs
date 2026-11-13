@@ -13,9 +13,16 @@ namespace ConstChaining_Overloading
 
         // constructor
         public Bunny(string name)
+            : this(name, 0)
         {
             this.name = name;
-            numBananas = 0;
+            //numBananas = 0;
+        }
+
+        public Bunny(string name, int startingBananas)
+        {
+            this.name = name;
+            numBananas = startingBananas;
         }
 
         // methods
